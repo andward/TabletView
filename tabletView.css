@@ -1,0 +1,62 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.tablet
+{
+	display: inline-block;
+	margin: 0px 1px 1px 0px;
+	position: relative;
+	background-color: #f1f1f1;
+	vertical-align: top;
+}
+
+.pop_panel
+{
+	min-height: 300px;
+	display: none;
+	background-color: #f1f1f1;
+	margin: 10px 0;
+	position: relative;
+}
+
+.close_pop
+{
+	height:20px;
+	width:20px;
+	margin:5px;
+	float:right;
+	background-color: gray;
+	cursor: pointer;
+}
+
+.pointer
+{
+	display: none;
+	position:absolute;
+	bottom:-15px;
+	left: 50%;
+	height:10px;
+	width:10px;
+	background-color: #f1f1f1;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+}
+
+.boxclose{
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 40px;
+	width: 40px;
+    cursor:pointer;
+    color: #333;
+    font-size: 33px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center; 
+}
+
+.boxclose:before {
+    content: "×";
+}
+
