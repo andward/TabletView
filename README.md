@@ -5,16 +5,13 @@ JQuery plugin for tablet layout
 
 **Usage:**
 
-<code>$("element").tabletView();</code>
+`$("element").tabletView();`
 
 **Parameter:**
 
-<code>
-tabletHeight: '200px', // Tablet min width
+`tabletHeight: '200px', // Tablet min width`
+`tabletNumInRow: 5, // Tablet number of each row`
+`backgroundColor: '#f1f1f1' // Tablet color`
 
-tabletNumInRow: 5, // Tablet number of each row
-
-backgroundColor: '#f1f1f1' // Tablet color
-</code>
 
 
