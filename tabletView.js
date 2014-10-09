@@ -68,7 +68,7 @@ Example: $("div").tabletView();
 
         // Ajax for pop panel
 		var ajaxCallback = function() {
-			$(".pop_panel").html("");
+			$(".pop_panel").html("<div class='boxclose'></div>");
 			$.ajax({
 				url: options.callbackURL,
 				type: 'POST',
