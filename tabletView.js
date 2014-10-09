@@ -39,7 +39,7 @@ Example: $("div").tabletView();
 
 		// Set CSS for signal tablet
 		var setTabletCSS = function(tablet) {
-			if ($(window).width() > 400) {
+			if ($(window).width() > options.deviceWidth) {
 				tablet.css('width', widget.width() / options.tabletNumInRow - 1);
 				$(".pop_panel").width(widget.width() - options.tabletNumInRow + 1);
 			} else {
@@ -66,6 +66,27 @@ Example: $("div").tabletView();
 			tablet.append("<div class='pointer'></div>");
 		};
 
+        // Ajax for pop panel
+		var ajaxCallback = function() {
+			$(".pop_panel").html("");
+			$.ajax({
+				url: options.callbackURL,
+				type: 'POST',
+				dataType: 'json',
+				data: options.callbackParameter,
+			})
+			.done(function() {
+				console.log("AJAX success");
+				$(".pop_panel").append(options.callbackHTML);				
+			})
+			.fail(function() {
+				console.log("AJAX error");
+			})
+			.always(function() {
+				console.log("AJAX complete");
+			});
+		};
+
 		// Display panel under focused tablet row
 		var showPanel = function(id) {
 			var id = id + 1;
@@ -81,6 +102,7 @@ Example: $("div").tabletView();
 				return 0;
 			}
 			tabletID = id;
+			ajaxCallback();
 			$(".pop_panel").show();
 			return 1;
 		};
@@ -111,7 +133,11 @@ Example: $("div").tabletView();
 	$.fn.tabletView.options = {
 		tabletHeight: '200px', // Tablet min width
 		tabletNumInRow: 5, // Tablet number of each row
-		backgroundColor: '#f1f1f1' // Tablet color
+		backgroundColor: '#f1f1f1', // Tablet color
+		deviceWidth: 400, // device width
+		callbackHTML: null, // Ajax callback function
+		callbackURL: "", // Ajax url
+		callbackParameter: null, // Ajax parameter
 	};
 
 })(jQuery);

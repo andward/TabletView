@@ -13,7 +13,13 @@ JQuery plugin for tablet layout
 
 `tabletNumInRow: 5, // Tablet number of each row`
 
-`backgroundColor: '#f1f1f1' // Tablet color`
+`backgroundColor: '#f1f1f1', // Tablet color`
 
+`deviceWidth: 400, // device width`
 
+`callbackHTML: null, // Ajax callback function`
+
+`callbackURL: "", // Ajax url`
+
+`callbackParameter: null, // Ajax parameter`
 
