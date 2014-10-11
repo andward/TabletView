@@ -13,6 +13,8 @@ JQuery plugin for tablet layout
 
 `tabletNumInRow: 5, // Tablet number of each row`
 
+`tabletMargin: 1, // Tablet distance`
+
 `backgroundColor: '#f1f1f1', // Tablet color`
 
 `deviceWidth: 400, // device width`
