@@ -18,15 +18,15 @@ Example: $("div").tabletView();
 
 		// Tablet total number 
 		var tabletsNum = 0;
-		
+
 		// widget
 		var widget = this;
+
+		var postData = 0;
 
 		// Init function(return)
 		var init = function() {
 			insertPanel();
-			widget.css('letter-spacing', '-4px');
-
 			widget.children("div").not('.pop_panel').each(function() {
 				/* Add class and style for each tablet */
 				$(this).addClass('tablet');
@@ -79,14 +79,15 @@ Example: $("div").tabletView();
 				tablet.css('width', widget.width() / options.tabletNumInRow - options.tabletMargin);
 				$(".pop_panel").width(widget.width() - options.tabletMargin);
 			} else {
-				widget.width("100%");
+				widget.width($(window).width());
 				tablet.width("100%");
 				$(".pop_panel").width("100%");
 				options.tabletNumInRow = 1;
 			}
 			tablet.css({
 				'height': options.tabletHeight,
-				'background-color': options.backgroundColor
+				'background-color': options.backgroundColor,
+				'margin-right': options.tabletMargin - 4
 			});
 			$(".pop_panel").css('background-color', options.backgroundColor);
 			$(".pointer").css('background-color', options.backgroundColor);
@@ -104,18 +105,20 @@ Example: $("div").tabletView();
 
 		// Ajax for pop panel
 		var ajaxCallback = function() {
-			$(".pop_panel").html("<div class='box_close'></div> \
-				<div class='arrow_left'></div> \
-				<div class='arrow_right'></div>");
+			var data = {};
+			var index = options.callbackParameter;
+			data[index] = postData;
 			$.ajax({
 				url: options.callbackURL,
 				type: 'POST',
 				dataType: 'json',
-				data: options.callbackParameter,
+				data: data,
+				cache: false
 			})
-				.done(function() {
+				.done(function(data) {
 					console.log("AJAX success");
-					$(".pop_panel").append(options.callbackHTML);
+					$(".pop_panel").append(options.callbackFuntion(data.book, 0));
+
 				})
 				.fail(function() {
 					console.log("AJAX error");
@@ -127,6 +130,9 @@ Example: $("div").tabletView();
 
 		// Display panel under focused tablet row
 		var showPanel = function(id) {
+			$(".pop_panel").html("<div class='box_close'></div> \
+				<div class='arrow_left'></div> \
+				<div class='arrow_right'></div>");
 			id = id + 1;
 			var row_id = Math.ceil(id / options.tabletNumInRow) * options.tabletNumInRow;
 			if (tabletID === 0 || Math.ceil(id / options.tabletNumInRow) != Math.ceil(tabletID / options.tabletNumInRow)) {
@@ -141,6 +147,7 @@ Example: $("div").tabletView();
 			}
 			tabletID = id;
 			console.log(tabletID);
+			postData = $(".tablet").eq(id - 1).attr(options.callbackParameter);
 			ajaxCallback();
 			$(".pointer").hide();
 			$(".pop_panel").show();
@@ -176,9 +183,9 @@ Example: $("div").tabletView();
 		tabletMargin: 1, // Tablet distance
 		backgroundColor: 'white', // Tablet color
 		deviceWidth: 400, // device width
-		callbackHTML: null, // Ajax callback function
+		callbackFuntion: function(){return "";}, // Ajax callback function
 		callbackURL: "", // Ajax url
-		callbackParameter: null, // Ajax parameter
+		callbackParameter: "id", // Ajax parameter
 	};
 
 })(jQuery);

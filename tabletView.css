@@ -4,7 +4,7 @@
 .tablet
 {
 	display: inline-block;
-	margin: 0px 1px 1px 0px;
+	margin: 0px -3px 1px 0px;
 	position: relative;
 	background-color: white;
 	vertical-align: top;
@@ -14,7 +14,7 @@
 
 .pop_panel
 {
-	min-height: 300px;
+	min-height: 600px;
 	display: none;
 	background-color: white;
 	margin: 10px 0;
@@ -74,7 +74,7 @@
 	height: 15px;
 	width: 15px;
 	position: absolute;
-	top:45%;
+	top: 250px;
 	left: 12px;
 }
 
@@ -89,6 +89,6 @@
 	height: 15px;
 	width: 15px;
 	position: absolute;
-	top:45%;
+	top: 250px;
 	right: 12px;
 }

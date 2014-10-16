@@ -19,9 +19,9 @@ JQuery plugin for tablet layout
 
 `deviceWidth: 400, // device width`
 
-`callbackHTML: null, // Ajax callback function`
+`callbackFuntion: function(){return "";}, // Ajax callback function`
 
 `callbackURL: "", // Ajax url`
 
-`callbackParameter: null, // Ajax parameter`
+`callbackParameter: "id", // Ajax parameter`
 
